@@ -27,7 +27,6 @@ class BookModel {
   final String? origin;
   final String? certification;
   final bool freeDelivery;
-  final bool isCombo;
   final bool isFeatured;
   final bool isPrescriptionRequired;
   final String? coverImage;
@@ -107,7 +106,6 @@ class BookModel {
     this.origin,
     this.certification,
     this.freeDelivery = false,
-    this.isCombo = false,
     required this.isFeatured,
     this.isPrescriptionRequired = false,
     this.coverImage,
@@ -171,7 +169,6 @@ class BookModel {
       origin: json['origin'] ?? 'বাংলাদেশ',
       certification: json['certification'] ?? json['paper_quality'],
       freeDelivery: json['free_delivery'] == true || json['free_delivery'] == 1 || json['free_delivery'] == '1',
-      isCombo: json['is_combo'] == true || json['is_combo'] == 1 || json['is_combo'] == '1',
       isFeatured: json['is_featured'] == true || json['is_featured'] == 1 || json['is_featured'] == '1',
       isPrescriptionRequired: json['is_prescription_required'] == true || json['is_prescription_required'] == 1,
       coverImage: json['cover_image'],
@@ -214,7 +211,6 @@ class BookModel {
       'origin': origin,
       'certification': certification,
       'free_delivery': freeDelivery,
-      'is_combo': isCombo,
       'is_featured': isFeatured,
       'is_prescription_required': isPrescriptionRequired,
       'cover_image': coverImage,
