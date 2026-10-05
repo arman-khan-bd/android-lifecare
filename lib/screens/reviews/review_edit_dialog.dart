@@ -1,4 +1,4 @@
-﻿import 'dart:typed_data';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -280,13 +280,13 @@ class _ReviewEditDialogState extends State<ReviewEditDialog> {
                     if (isPending) _buildPendingAlertNotice(),
 
                     // Reviewer Name & Designation
-                    _buildSectionTitle('শিক্ষার্থী / রিভিউয়ারের তথ্য', Icons.person_outline_rounded),
+                    _buildSectionTitle('ক্রেতা / কাস্টমারের তথ্য', Icons.person_outline_rounded),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _nameController,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                       decoration: InputDecoration(
-                        labelText: 'শিক্ষার্থীর নাম *',
+                        labelText: 'কাস্টমারের নাম *',
                         hintText: 'উদা: তাওহীদ হাসান',
                         prefixIcon: const Icon(Icons.badge_outlined, color: AppTheme.primary, size: 20),
                         filled: true,
@@ -297,7 +297,7 @@ class _ReviewEditDialogState extends State<ReviewEditDialog> {
                       ),
                       validator: (val) {
                         if (val == null || val.trim().isEmpty) {
-                          return 'শিক্ষার্থীর নাম দিন';
+                          return 'কাস্টমারের নাম দিন';
                         }
                         return null;
                       },
@@ -307,9 +307,9 @@ class _ReviewEditDialogState extends State<ReviewEditDialog> {
                       controller: _designationController,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                       decoration: InputDecoration(
-                        labelText: 'ব্যাচ / কলেজ / শিক্ষাপ্রতিষ্ঠান',
-                        hintText: 'উদা: DMC-52 / নটর ডেম কলেজ / HSC-24',
-                        prefixIcon: const Icon(Icons.school_outlined, color: AppTheme.accentCyan, size: 20),
+                        labelText: 'পেশা / এলাকা / ঠিকানা',
+                        hintText: 'উদা: ধানমন্ডি, ঢাকা / চাকরিজীবী',
+                        prefixIcon: const Icon(Icons.location_on_outlined, color: AppTheme.accentCyan, size: 20),
                         filled: true,
                         fillColor: const Color(0xFF161F30),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFF263345))),
@@ -411,14 +411,14 @@ class _ReviewEditDialogState extends State<ReviewEditDialog> {
                     const SizedBox(height: 20),
 
                     // Comment / Feedback Text
-                    _buildSectionTitle('শিক্ষার্থীর মন্তব্য ও ফিডব্যাক', Icons.comment_outlined),
+                    _buildSectionTitle('গ্রাহকের মন্তব্য ও রিভিউ', Icons.comment_outlined),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _commentController,
                       maxLines: 4,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                       decoration: InputDecoration(
-                        hintText: 'শিক্ষার্থীর রিভিউ বা চ্যাট থেকে প্রাপ্ত গুরুত্বপূর্ণ কথা এখানে লিখুন...',
+                        hintText: 'গ্রাহকের রিভিউ বা চ্যাট থেকে প্রাপ্ত গুরুত্বপূর্ণ কথা এখানে লিখুন...',
                         hintStyle: const TextStyle(color: Color(0xFF64748B), fontSize: 13),
                         filled: true,
                         fillColor: const Color(0xFF161F30),

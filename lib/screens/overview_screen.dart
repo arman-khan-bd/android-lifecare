@@ -61,7 +61,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'বুস্টার ডোজ ওভারভিউ',
+                  'লাইফ কেয়ার ওভারভিউ',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -608,7 +608,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'বিক্রি: ${b.totalSold} কপি • ৳${b.totalRevenue.toInt()}',
+                      'বিক্রি: ${b.totalSold} টি • ৳${b.totalRevenue.toInt()}',
                       style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 10),
                     ),
                   ],

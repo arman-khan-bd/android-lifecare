@@ -357,15 +357,15 @@ class _BooksListScreenState extends State<BooksListScreen> {
             ),
             child: Row(
               children: [
-                if (book.pages > 0) ...[
-                  const Icon(Icons.auto_stories_rounded, color: Color(0xFF64748B), size: 14),
+                if (book.displayUnitsCount > 0) ...[
+                  const Icon(Icons.medication_rounded, color: Color(0xFF64748B), size: 14),
                   const SizedBox(width: 4),
-                  Text('${book.pages} পৃষ্ঠা', style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 11)),
+                  Text('${book.displayUnitsCount} ${book.displayUnits ?? book.displayDosage}', style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 11)),
                   const SizedBox(width: 12),
                 ],
                 const Icon(Icons.shopping_bag_outlined, color: Color(0xFF64748B), size: 14),
                 const SizedBox(width: 4),
-                Text('বিক্রি: ${book.totalSold}', style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 11)),
+                Text('বিক্রি: ${book.totalSold} টি', style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 11)),
                 const Spacer(),
 
                 // Details Button

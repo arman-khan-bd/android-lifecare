@@ -92,12 +92,13 @@ class NotificationProvider extends ChangeNotifier {
             final isAbandoned = item.type == 'abandoned_order';
             final title = isOrder
                 ? (item.title.isNotEmpty ? item.title : '🔔 নতুন অর্ডার: #${item.orderId ?? ''}')
-                : (isAbandoned ? '🛒 নতুন পরিত্যক্ত কার্ট লিড' : '⭐ নতুন শিক্ষার্থী রিভিউ (${item.rating ?? 5}★)');
+                : (isAbandoned ? '🛒 নতুন পরিত্যক্ত কার্ট লিড' : '⭐ নতুন কাস্টমার রিভিউ (${item.rating ?? 5}★)');
+            final product = item.bookTitle.isNotEmpty ? item.bookTitle : 'মেডিসিন';
             final body = isOrder
-                ? '${item.customerName} (${item.customerPhone}) • ৳${item.amount.toInt()} - ${item.bookTitle}'
+                ? '${item.customerName} (${item.customerPhone}) • ৳${item.amount.toInt()} - $product'
                 : (isAbandoned
                     ? '${item.customerName} (${item.customerPhone}) • ৳${item.amount.toInt()}'
-                    : '${item.customerName} - "${item.comment ?? item.bookTitle}"');
+                    : '${item.customerName} - "${item.comment ?? product}"');
 
             final notifId = ((item.orderId ?? item.abandonedOrderId ?? item.reviewId ?? DateTime.now().millisecondsSinceEpoch) % 1000000).toInt();
 
@@ -153,7 +154,7 @@ class NotificationProvider extends ChangeNotifier {
       await NativeNotificationService.showNotification(
         id: 9999,
         title: '🔔 টেস্ট পুশ নোটিফিকেশন',
-        body: 'বুস্টার ডোজ অ্যাডমিন পুশ নোটিফিকেশন ড্রপডাউন সফলভাবে কাজ করছে!',
+        body: 'লাইফ কেয়ার মেডিসিন অ্যাডমিন পুশ নোটিফিকেশন ড্রপডাউন সফলভাবে কাজ করছে!',
         type: 'test',
         payload: 'test_alert',
       );

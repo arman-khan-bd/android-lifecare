@@ -190,7 +190,7 @@ class NotificationAlarmReceiver : BroadcastReceiver() {
                         val customerName = item.optString("customer_name", "গ্রাহক")
                         val customerPhone = item.optString("customer_phone", "")
                         val amount = item.optDouble("amount", 0.0).toInt()
-                        val bookTitle = item.optString("book_title", "বই")
+                        val bookTitle = item.optString("medicine_title", item.optString("book_title", "মেডিসিন"))
 
                         val title = "🔔 নতুন অর্ডার: #$orderNum"
                         val body = "$customerName ($customerPhone) • ৳$amount - $bookTitle"
@@ -232,7 +232,7 @@ class NotificationAlarmReceiver : BroadcastReceiver() {
                 "review" -> {
                     val reviewId = item.optLong("review_id", 0L)
                     if (reviewId > lastReviewId) {
-                        val reviewerName = item.optString("reviewer_name", "শিক্ষার্থী")
+                        val reviewerName = item.optString("reviewer_name", "কাস্টমার")
                         val rating = item.optInt("rating", 5)
                         val comment = item.optString("comment", "")
 

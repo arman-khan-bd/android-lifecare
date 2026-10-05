@@ -126,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            user?.email ?? 'admin@ananyabangla.com',
+                            user?.email ?? 'admin@lifecaremedicinebd.shop',
                             style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
                           ),
                           const SizedBox(height: 6),

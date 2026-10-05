@@ -78,9 +78,9 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
     // Navbar initialization
     final navContent = widget.navbarSection.content;
     _navIsActive = widget.navbarSection.isActive;
-    _brandTitleController = TextEditingController(text: navContent['brand_title']?.toString() ?? 'অনন্যা বাংলা');
-    _brandSubtitleController = TextEditingController(text: navContent['brand_subtitle']?.toString() ?? 'একাডেমি');
-    _taglineController = TextEditingController(text: navContent['tagline']?.toString() ?? 'সুমন স্যারের অফিসিয়াল পাবলিকেশন');
+    _brandTitleController = TextEditingController(text: navContent['brand_title']?.toString() ?? 'Life Care');
+    _brandSubtitleController = TextEditingController(text: navContent['brand_subtitle']?.toString() ?? 'Medicine BD');
+    _taglineController = TextEditingController(text: navContent['tagline']?.toString() ?? '১০০% ন্যাচারাল ও অর্গানিক হারবাল হেলথকেয়ার');
     _phoneController = TextEditingController(text: navContent['phone']?.toString() ?? '০১৭০০-০০০০০০');
     _orderBtnTextController = TextEditingController(
       text: navContent['order_btn_text']?.toString() ?? navContent['order_button_text']?.toString() ?? 'অর্ডার করুন',
@@ -227,7 +227,7 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
             'badge': _noticeBadgeController.text.trim(),
             'text': _noticeTextController.text.trim(),
             'stock_count': parsedStock,
-            'stock_left': '$parsedStock কপি',
+            'stock_left': '$parsedStock টি',
             'show_stock': _showStock,
             'stock_enabled': _showStock,
           },
@@ -545,11 +545,11 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
           // Titles & Brand Text
           const Text('ব্র্যান্ড ও টাইটেল তথ্য', style: TextStyle(color: Colors.white, fontSize: 13.5, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          _buildTextField('ব্র্যান্ড মূল নাম (Title)', _brandTitleController, Icons.title_rounded, hint: 'অনন্যা বাংলা'),
+          _buildTextField('ব্র্যান্ড মূল নাম (Title)', _brandTitleController, Icons.title_rounded, hint: 'Life Care'),
           const SizedBox(height: 12),
-          _buildTextField('সাবটাইটেল (Subtitle)', _brandSubtitleController, Icons.subtitles_rounded, hint: 'একাডেমি'),
+          _buildTextField('সাবটাইটেল (Subtitle)', _brandSubtitleController, Icons.subtitles_rounded, hint: 'Medicine BD'),
           const SizedBox(height: 12),
-          _buildTextField('ট্যাগলাইন / লেখক পরিচিতি', _taglineController, Icons.badge_outlined, hint: 'সুমন স্যারের অফিসিয়াল পাবলিকেশন'),
+          _buildTextField('ট্যাগলাইন / ব্র্যান্ড পরিচিতি', _taglineController, Icons.badge_outlined, hint: '১০০% ন্যাচারাল ও অর্গানিক হারবাল হেলথকেয়ার'),
           const SizedBox(height: 12),
           _buildTextField('হটলাইন ফোন নম্বর', _phoneController, Icons.phone_rounded, hint: '০১৭০০-০০০০০০'),
           const SizedBox(height: 12),
@@ -672,7 +672,7 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
                   spacing: 8,
                   children: [15, 23, 50, 100].map((preset) {
                     return ActionChip(
-                      label: Text('$preset কপি'),
+                      label: Text('$preset টি'),
                       labelStyle: const TextStyle(color: Colors.white, fontSize: 11),
                       backgroundColor: const Color(0xFF1E293B),
                       onPressed: () {

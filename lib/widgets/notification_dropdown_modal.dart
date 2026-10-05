@@ -48,7 +48,7 @@ class _NotificationDropdownModalState extends State<NotificationDropdownModal> {
     }
     if (clean.isEmpty) return;
 
-    final msg = Uri.encodeComponent('আসসালামু আলাইকুম $customerName, বুস্টার ডোজ একাডেমি থেকে আপনার অর্ডারের বিষয়ে যোগাযোগ করছি।');
+    final msg = Uri.encodeComponent('আসসালামু আলাইকুম $customerName, Life Care Medicine BD থেকে আপনার অর্ডারের বিষয়ে যোগাযোগ করছি।');
     final uri = Uri.parse('https://wa.me/$clean?text=$msg');
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);

@@ -1,4 +1,4 @@
-﻿import 'dart:typed_data';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -49,28 +49,28 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
     // Pre-seed default website content if missing so all fields are immediately visible and editable
     final k = widget.section.sectionKey;
     if (k == 'footer') {
-      _editableContent.putIfAbsent('brand_title', () => 'অনন্যা বাংলা একাডেমি');
-      _editableContent.putIfAbsent('brand_subtitle', () => 'শব্দতরু বাংলা প্রকাশনী');
-      _editableContent.putIfAbsent('description', () => 'বাংলাদেশের এইচএসসি ও ভর্তি পরীক্ষার্থীদের বাংলা ১ম ও ২য় পত্রের নিখুঁত প্রস্তুতিতে দেশের বিশ্বস্ত শিক্ষা প্রকাশনা।');
-      _editableContent.putIfAbsent('support_phone', () => _editableContent['phone'] ?? '০১৯৬০-৭৪২৫৩৬ (সকাল ৯টা - রাত ১০টা)');
-      _editableContent.putIfAbsent('support_email', () => _editableContent['contact_email'] ?? _editableContent['email'] ?? 'support@ananyabangla.com');
-      _editableContent.putIfAbsent('address', () => 'বাংলাবাজার, ঢাকা-১১০০, বাংলাদেশ');
-      _editableContent.putIfAbsent('copyright', () => _editableContent['copyright_text'] ?? '© ২০২৫-২০২৬ অনন্যা বাংলা একাডেমি ও শব্দতরু প্রকাশনী। সর্বস্বত্ব সংরক্ষিত।');
+      _editableContent.putIfAbsent('brand_title', () => 'Life Care');
+      _editableContent.putIfAbsent('brand_subtitle', () => 'Medicine BD');
+      _editableContent.putIfAbsent('description', () => '১০০% ন্যাচারাল ও অর্গানিক ফর্মুলেশনে তৈরি নিরাপদ ভেষজ খাদ্য সম্পূরক ও নির্ভরযোগ্য স্বাস্থ্য সেবা।');
+      _editableContent.putIfAbsent('support_phone', () => _editableContent['phone'] ?? '০১৭০০-০০০০০০ (সকাল ৯টা - রাত ১০টা)');
+      _editableContent.putIfAbsent('support_email', () => _editableContent['contact_email'] ?? _editableContent['email'] ?? 'support@lifecarebd.com');
+      _editableContent.putIfAbsent('address', () => 'ঢাকা, বাংলাদেশ');
+      _editableContent.putIfAbsent('copyright', () => _editableContent['copyright_text'] ?? '© ২০২৫-২০২৬ Life Care Medicine BD। সর্বস্বত্ব সংরক্ষিত।');
     } else if (k == 'floating_buttons') {
-      _editableContent.putIfAbsent('phone', () => '+880 1960-742536');
-      _editableContent.putIfAbsent('whatsapp', () => '+8801960742536');
-      _editableContent.putIfAbsent('whatsapp_message', () => 'হ্যালো, আমি লাইফ কেয়ার মেডিসিন সম্পর্কে জানতে চাই।');
+      _editableContent.putIfAbsent('phone', () => '+880 1700-000000');
+      _editableContent.putIfAbsent('whatsapp', () => '+8801700000000');
+      _editableContent.putIfAbsent('whatsapp_message', () => 'হ্যালো, আমি Life Care মেডিসিন অর্ডার করতে চাই।');
     } else if (k == 'bookshelf') {
       _editableContent.putIfAbsent('section_badge', () => 'আমাদের সকল মেডিসিন ও পণ্য');
-      _editableContent.putIfAbsent('section_title', () => 'অনন্যা বাংলা বুকশেলফ');
+      _editableContent.putIfAbsent('section_title', () => 'মেডিসিন ক্যাটালগ ও শপ');
       _editableContent.putIfAbsent('section_subtitle', () => 'আপনার প্রয়োজনীয় মেডিসিন ও স্বাস্থ্য পণ্য নির্বাচন করুন।');
     } else if (k == 'book_about') {
       _editableContent.putIfAbsent('section_badge', () => 'মেডিসিন পরিচিতি ও বিশেষত্ব');
       _editableContent.putIfAbsent('section_title', () => 'কেন লাইফ কেয়ার মেডিসিন গ্রাহকদের ১ম পছন্দ?');
-      _editableContent.putIfAbsent('section_subtitle', () => 'মুখস্থ নির্ভরতা দূর করে সহজে বাংলা ২য় পত্রে পূর্ণাঙ্গ নম্বর নিশ্চিত করতে ১৬ বছরের শিক্ষকতার অভিজ্ঞতায় সাজানো অনন্য মাস্টারবুক।');
-      _editableContent.putIfAbsent('quote_badge', () => 'বোর্ড স্ট্যান্ডার্ড কারিকুলাম');
-      _editableContent.putIfAbsent('quote_title', () => 'শতভাগ রুলস মুখস্থহীন টেকনিক্যাল সলভিং');
-      _editableContent.putIfAbsent('quote_text', () => 'শত শত খটমটে ব্যাকরণ নিয়ম মুখস্থ না করেই প্রশ্ন দেখে সঠিক উত্তর লেখার জাদুকরী টেকনিক ও অভিনব শর্টকাট।');
+      _editableContent.putIfAbsent('section_subtitle', () => '১০০% খাঁটি প্রাকৃতিক নির্যাস ও পরীক্ষিত উপাদানে তৈরি আমাদের প্রতিটি ওষুধ মানবদেহের স্বাভাবিক সুস্থতা ফিরিয়ে আনতে সাহায্য করে।');
+      _editableContent.putIfAbsent('quote_badge', () => 'ন্যাচারাল ও বিশুদ্ধ ফর্মুলেশন');
+      _editableContent.putIfAbsent('quote_title', () => 'প্রাকৃতিক উপাদান ও সর্বোচ্চ বিশুদ্ধতা নিশ্চয়তা');
+      _editableContent.putIfAbsent('quote_text', () => 'দীর্ঘমেয়াদী সুস্থতায় ক্ষতিকারক কেমিক্যালমুক্ত নিরাপদ ও কার্যকরী ভেষজ স্বাস্থ্য সমাধান।');
       _editableContent.putIfAbsent('cta_text', () => 'মেডিসিন তালিকা দেখুন');
     } else if (k == 'dispatch' || k == 'parcel') {
       _editableContent.putIfAbsent('section_title', () => 'সারা দেশে দ্রুততম হোম ডেলিভারি');
@@ -249,12 +249,12 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
     switch (widget.section.sectionKey) {
       case 'footer':
         fields.addAll([
-          _EditableField('brand_title', 'ব্র্যান্ড / একাডেমি নাম', Icons.business_rounded, c['brand_title']?.toString() ?? 'অনন্যা বাংলা একাডেমি'),
-          _EditableField('brand_subtitle', 'সাব-টাইটেল / প্রকাশনী', Icons.subtitles_rounded, c['brand_subtitle']?.toString() ?? 'শব্দতরু বাংলা প্রকাশনী'),
+          _EditableField('brand_title', 'ব্র্যান্ড নাম (Title)', Icons.business_rounded, c['brand_title']?.toString() ?? 'Life Care'),
+          _EditableField('brand_subtitle', 'সাব-টাইটেল (Subtitle)', Icons.subtitles_rounded, c['brand_subtitle']?.toString() ?? 'Medicine BD'),
           _EditableField('description', 'ফুটার বিবরণ ও পরিচিতি', Icons.description_outlined, c['description']?.toString() ?? '', maxLines: 4),
           _EditableField('support_phone', 'যোগাযোগ ও হেল্পলাইন ফোন', Icons.phone_in_talk_rounded, c['support_phone']?.toString() ?? c['phone']?.toString() ?? ''),
           _EditableField('support_email', 'সাপোর্ট ইমেইল', Icons.email_outlined, c['support_email']?.toString() ?? c['contact_email']?.toString() ?? c['email']?.toString() ?? ''),
-          _EditableField('address', 'অফিস / শোরুম ঠিকানা', Icons.location_on_outlined, c['address']?.toString() ?? '', maxLines: 2),
+          _EditableField('address', 'অফিস / ওয়্যারহাউজ ঠিকানা', Icons.location_on_outlined, c['address']?.toString() ?? '', maxLines: 2),
           _EditableField('copyright', 'কপিরাইট টেক্সট', Icons.copyright_rounded, c['copyright']?.toString() ?? c['copyright_text']?.toString() ?? '', maxLines: 2),
         ]);
         handledKeys.addAll(['brand_title', 'brand_subtitle', 'description', 'support_phone', 'phone', 'support_email', 'contact_email', 'email', 'address', 'copyright', 'copyright_text', 'footer_tagline']);
@@ -272,7 +272,7 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
       case 'bookshelf':
         fields.addAll([
           _EditableField('section_badge', 'ব্যাজ টেক্সট', Icons.stars_rounded, c['section_badge']?.toString() ?? 'আমাদের সকল মেডিসিন ও পণ্য'),
-          _EditableField('section_title', 'বুকশেলফ শিরোনাম', Icons.title_rounded, c['section_title']?.toString() ?? 'অনন্যা বাংলা বুকশেলফ'),
+          _EditableField('section_title', 'মেডিসিন ক্যাটালগ শিরোনাম', Icons.title_rounded, c['section_title']?.toString() ?? 'আমাদের সকল মেডিসিন ও সাপ্লিমেন্ট'),
           _EditableField('section_subtitle', 'সাব-টাইটেল / বিবরণ', Icons.subtitles_rounded, c['section_subtitle']?.toString() ?? '', maxLines: 3),
         ]);
         handledKeys.addAll(['section_badge', 'section_title', 'section_subtitle']);
@@ -281,7 +281,7 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
       case 'book_about':
         fields.addAll([
           _EditableField('section_badge', 'ব্যাজ টেক্সট', Icons.stars_rounded, c['section_badge']?.toString() ?? 'মেডিসিন পরিচিতি ও বিশেষত্ব'),
-          _EditableField('section_title', 'বই পরিচিতি শিরোনাম', Icons.title_rounded, c['section_title']?.toString() ?? 'কেন লাইফ কেয়ার মেডিসিন গ্রাহকদের ১ম পছন্দ?'),
+          _EditableField('section_title', 'মেডিসিন পরিচিতি শিরোনাম', Icons.title_rounded, c['section_title']?.toString() ?? 'কেন লাইফ কেয়ার মেডিসিন গ্রাহকদের ১ম পছন্দ?'),
           _EditableField('section_subtitle', 'সাবটাইটেল / সারসংক্ষেপ', Icons.subtitles_rounded, c['section_subtitle']?.toString() ?? '', maxLines: 3),
           _EditableField('quote_badge', 'কোটেশন ব্যাজ', Icons.bookmark_border_rounded, c['quote_badge']?.toString() ?? ''),
           _EditableField('quote_title', 'কোটেশন টাইটেল', Icons.format_quote_rounded, c['quote_title']?.toString() ?? ''),
@@ -293,17 +293,17 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
 
       case 'author':
         fields.addAll([
-          _EditableField('author_name', 'লেখকের নাম', Icons.person_outline_rounded, c['author_name']?.toString() ?? ''),
-          _EditableField('author_title', 'পদবি / টাইটেল', Icons.badge_outlined, c['author_title']?.toString() ?? ''),
-          _EditableField('author_bio', 'বায়ো / পরিচিতি', Icons.info_outline_rounded, c['author_bio']?.toString() ?? '', maxLines: 4),
-          _EditableField('author_quote', 'বিখ্যাত উক্তি', Icons.format_quote_rounded, c['author_quote']?.toString() ?? '', maxLines: 2),
+          _EditableField('author_name', 'গবেষক / কনসালটেন্টের নাম', Icons.person_outline_rounded, c['author_name']?.toString() ?? ''),
+          _EditableField('author_title', 'পদবি / বিশেষজ্ঞ টাইটেল', Icons.badge_outlined, c['author_title']?.toString() ?? ''),
+          _EditableField('author_bio', 'বায়ো / ব্র্যান্ড পরিচিতি বিবরণ', Icons.info_outline_rounded, c['author_bio']?.toString() ?? '', maxLines: 4),
+          _EditableField('author_quote', 'বিশেষ অঙ্গীকার বা উক্তি', Icons.format_quote_rounded, c['author_quote']?.toString() ?? '', maxLines: 2),
         ]);
         handledKeys.addAll(['author_name', 'author_title', 'author_bio', 'author_quote']);
         break;
 
       case 'reviews':
         fields.addAll([
-          _EditableField('section_title', 'সেকশন টাইটেল', Icons.title_rounded, c['section_title']?.toString() ?? 'হাজারো শিক্ষার্থীর বিশ্বস্ত সঙ্গী'),
+          _EditableField('section_title', 'সেকশন টাইটেল', Icons.title_rounded, c['section_title']?.toString() ?? 'হাজারো সুস্থ মানুষের বাস্তব বিশ্বাস ও রিভিউ'),
           _EditableField('section_subtitle', 'সাবটাইটেল', Icons.subtitles_rounded, c['section_subtitle']?.toString() ?? '', maxLines: 2),
           _EditableField('section_badge', 'ব্যাজ টেক্সট', Icons.stars_rounded, c['section_badge']?.toString() ?? ''),
           _EditableField('dispatch_title', 'ডেলিভারি ব্যানার টাইটেল', Icons.local_shipping_outlined, c['dispatch_title']?.toString() ?? '', maxLines: 2),

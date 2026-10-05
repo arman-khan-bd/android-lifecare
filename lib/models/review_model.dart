@@ -54,7 +54,7 @@ class ReviewModel {
       bookId: json['book_id'] != null ? int.tryParse(json['book_id'].toString()) : null,
       reviewerName: json['reviewer_name'] != null && json['reviewer_name'].toString().trim().isNotEmpty
           ? json['reviewer_name'].toString().trim()
-          : 'সম্মানিত শিক্ষার্থী',
+          : 'সম্মানিত গ্রাহক',
       designation: json['designation']?.toString(),
       rating: json['rating'] is int ? json['rating'] : int.tryParse(json['rating']?.toString() ?? '5') ?? 5,
       comment: json['comment']?.toString(),

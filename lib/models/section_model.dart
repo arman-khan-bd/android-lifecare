@@ -107,8 +107,8 @@ class SectionModel {
 
   /// Navbar getters
   String get logoUrl => content['logo_url']?.toString() ?? imageUrl ?? '/images/logo.png';
-  String get brandTitle => content['brand_title']?.toString() ?? 'অনন্যা বাংলা';
-  String get brandSubtitle => content['brand_subtitle']?.toString() ?? 'একাডেমি';
+  String get brandTitle => content['brand_title']?.toString() ?? 'Life Care';
+  String get brandSubtitle => content['brand_subtitle']?.toString() ?? 'Medicine BD';
   String get tagline => content['tagline']?.toString() ?? '';
   String get phone => content['phone']?.toString() ?? '';
   String get orderButtonText => content['order_btn_text']?.toString() ?? content['order_button_text']?.toString() ?? 'অর্ডার করুন';

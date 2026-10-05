@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../config/api_config.dart';
 import '../../config/app_theme.dart';
@@ -65,7 +65,7 @@ class _SectionsManagerScreenState extends State<SectionsManagerScreen> {
       case 'notice_bar': return Icons.campaign_outlined;
       case 'author': return Icons.person_outline_rounded;
       case 'reviews': return Icons.star_outline_rounded;
-      case 'bookshelf': return Icons.book_outlined;
+      case 'bookshelf': return Icons.medication_rounded;
       case 'faq': return Icons.help_outline_rounded;
       case 'footer': return Icons.web_asset_rounded;
       case 'book_about': return Icons.info_outline_rounded;

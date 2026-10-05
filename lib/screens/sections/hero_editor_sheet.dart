@@ -61,9 +61,9 @@ class _HeroEditorSheetState extends State<HeroEditorSheet> {
         : [
             {
               'id': 'slide-1',
-              'title': 'মুখস্থ ছাড়াই সহজ টেকনিকে বাংলা ২য় পত্রে নিশ্চিত',
-              'title_highlight': 'A+ মার্কস!',
-              'banner_image': '/images/hsc-2026-hero.webp',
+              'title': '১০০% ন্যাচারাল ও কার্যকরী জয়েন্ট পেইন রিলিফ',
+              'title_highlight': 'প্রাকৃতিক ভেষজ ফর্মুলেশন',
+              'banner_image': '/images/lifecare/hero_banner.jpg',
               'mobile_image_url': '',
               'order_button_text': 'এখনই অর্ডার করুন',
               'target_book_id': null,

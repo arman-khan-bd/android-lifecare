@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../config/app_theme.dart';
 import '../../models/abandoned_order_model.dart';
@@ -306,10 +306,10 @@ class _ConvertOrderDialogState extends State<ConvertOrderDialog> {
                       const SizedBox(height: 18),
 
                       // Order Items Section
-                      _buildSectionTitle('পণ্য ও অর্ডারের পরিমাণ'),
+                      _buildSectionTitle('মেডিসিন ও অর্ডারের পরিমাণ'),
                       const SizedBox(height: 8),
 
-                      _buildFieldLabel('পণ্য নির্বাচন (Product)*'),
+                      _buildFieldLabel('মেডিসিন / পণ্য নির্বাচন (Product)*'),
                       DropdownButtonFormField<int>(
                         value: _selectedBookId != null && books.any((b) => b.id == _selectedBookId)
                             ? _selectedBookId
