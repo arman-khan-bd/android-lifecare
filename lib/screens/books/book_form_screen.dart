@@ -64,7 +64,6 @@ class _BookFormScreenState extends State<BookFormScreen> {
   // Toggles
   bool _freeDelivery = false;
   bool _isFeatured = false;
-  bool _isCombo = false;
   bool _isPrescriptionRequired = false;
 
   bool _isSaving = false;
@@ -131,7 +130,6 @@ class _BookFormScreenState extends State<BookFormScreen> {
 
     _freeDelivery = b?.freeDelivery ?? true;
     _isFeatured = b?.isFeatured ?? false;
-    _isCombo = b?.isCombo ?? false;
     _isPrescriptionRequired = b?.isPrescriptionRequired ?? false;
   }
 
@@ -451,7 +449,6 @@ class _BookFormScreenState extends State<BookFormScreen> {
       'key_points': _features,
       'free_delivery': _freeDelivery,
       'is_featured': _isFeatured,
-      'is_combo': _isCombo,
       'is_prescription_required': _isPrescriptionRequired,
       'gallery_images': _galleryImages,
     };
@@ -1401,17 +1398,6 @@ class _BookFormScreenState extends State<BookFormScreen> {
           value: _isFeatured,
           activeColor: AppTheme.primary,
           onChanged: (val) => setState(() => _isFeatured = val),
-        ),
-        const Divider(color: Color(0xFF263345)),
-        SwitchListTile(
-          contentPadding: EdgeInsets.zero,
-          title: const Text('কম্বো প্যাকেজ (Combo Pack)',
-              style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
-          subtitle: const Text('একাধিক পণ্যের স্পেশাল প্যাকেজ বা কোর্স হিসেবে চিহ্নিত করতে',
-              style: TextStyle(color: Color(0xFF94A3B8), fontSize: 11)),
-          value: _isCombo,
-          activeColor: AppTheme.primary,
-          onChanged: (val) => setState(() => _isCombo = val),
         ),
         const Divider(color: Color(0xFF263345)),
         SwitchListTile(

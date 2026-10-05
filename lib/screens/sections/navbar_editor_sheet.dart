@@ -1,4 +1,4 @@
-﻿import 'dart:typed_data';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -94,13 +94,13 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
       final nbContent = widget.noticeBarSection!.content;
       _noticeIsActive = widget.noticeBarSection!.isActive;
       _noticeTextController = TextEditingController(
-        text: nbContent['text']?.toString() ?? 'যে কোনো কম্বো প্যাকেজে সারা দেশে ফ্রি হোম ডেলিভারি + স্পেশাল রিভিশন চার্ট একদম ফ্রি!',
+        text: nbContent['text']?.toString() ?? 'সমগ্র বাংলাদেশে ক্যাশ অন ডেলিভারি এবং ফ্রি হোম ডেলিভারি সুবিধা!',
       );
       _noticeBadgeController = TextEditingController(text: nbContent['badge']?.toString() ?? 'সীমিত সময়ের অফার');
       _stockCountController = TextEditingController(text: widget.noticeBarSection!.stockCount.toString());
       _showStock = nbContent['show_stock'] != false && nbContent['stock_enabled'] != false;
     } else {
-      _noticeTextController = TextEditingController(text: 'যে কোনো কম্বো প্যাকেজে সারা দেশে ফ্রি হোম ডেলিভারি!');
+      _noticeTextController = TextEditingController(text: 'সমগ্র বাংলাদেশে ক্যাশ অন ডেলিভারি এবং ফ্রি হোম ডেলিভারি সুবিধা!');
       _noticeBadgeController = TextEditingController(text: 'অফার');
       _stockCountController = TextEditingController(text: '23');
     }
@@ -598,7 +598,7 @@ class _NavbarEditorSheetState extends State<NavbarEditorSheet> with SingleTicker
 
           _buildTextField('জরুরি ব্যাজ টেক্সট', _noticeBadgeController, Icons.stars_rounded, hint: 'সীমিত সময়ের অফার'),
           const SizedBox(height: 12),
-          _buildTextField('ঘোষণা / অফার বার্তা', _noticeTextController, Icons.announcement_outlined, maxLines: 3, hint: 'যে কোনো কম্বো প্যাকেজে ফ্রি হোম ডেলিভারি!'),
+          _buildTextField('ঘোষণা / অফার বার্তা', _noticeTextController, Icons.announcement_outlined, maxLines: 3, hint: 'সমগ্র বাংলাদেশে ক্যাশ অন ডেলিভারি এবং ফ্রি হোম ডেলিভারি সুবিধা!'),
           const SizedBox(height: 18),
 
           // Stock Counter Card
