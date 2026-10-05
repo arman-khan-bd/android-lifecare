@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import '../config/api_config.dart';
@@ -67,10 +66,12 @@ class ApiService {
       } else {
         throw ApiException(data['message'] ?? 'Login failed. Please check credentials.', response.statusCode);
       }
-    } on SocketException {
-      throw ApiException('সার্ভারে সংযোগ করা যাচ্ছে না। ইন্টারনেট কানেকশন বা ডোমেইন চেক করুন।');
     } catch (e) {
       if (e is ApiException) rethrow;
+      final errStr = e.toString().toLowerCase();
+      if (errStr.contains('socket') || errStr.contains('connection') || errStr.contains('network') || errStr.contains('failed to fetch')) {
+        throw ApiException('সার্ভারে সংযোগ করা যাচ্ছে না। ইন্টারনেট কানেকশন বা ডোমেইন চেক করুন।');
+      }
       throw ApiException('লগইন করতে সমস্যা হয়েছে: $e');
     }
   }

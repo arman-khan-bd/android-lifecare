@@ -133,20 +133,20 @@ jobs:
           
           # Universal APK
           if [ -f "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-release.apk" ]; then
-            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-release.apk" "release-assets/BoosterDose-Admin-${{ env.RELEASE_TAG }}-universal.apk"
+            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-release.apk" "release-assets/LifeCare-Admin-${{ env.RELEASE_TAG }}-universal.apk"
           fi
           
           # Split APKs (arm64, arm-v7a, x86_64)
           if [ -f "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" ]; then
-            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" "release-assets/BoosterDose-Admin-${{ env.RELEASE_TAG }}-arm64-v8a.apk"
+            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" "release-assets/LifeCare-Admin-${{ env.RELEASE_TAG }}-arm64-v8a.apk"
           fi
           if [ -f "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" ]; then
-            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" "release-assets/BoosterDose-Admin-${{ env.RELEASE_TAG }}-armeabi-v7a.apk"
+            cp "${{ env.APP_DIR }}/build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" "release-assets/LifeCare-Admin-${{ env.RELEASE_TAG }}-armeabi-v7a.apk"
           fi
           
           # AppBundle
           if [ -f "${{ env.APP_DIR }}/build/app/outputs/bundle/release/app-release.aab" ]; then
-            cp "${{ env.APP_DIR }}/build/app/outputs/bundle/release/app-release.aab" "release-assets/BoosterDose-Admin-${{ env.RELEASE_TAG }}.aab"
+            cp "${{ env.APP_DIR }}/build/app/outputs/bundle/release/app-release.aab" "release-assets/LifeCare-Admin-${{ env.RELEASE_TAG }}.aab"
           fi
 
           # Generate SHA256 Checksums
@@ -160,7 +160,7 @@ jobs:
       - name: 📤 Upload Build Artifacts (Actions Storage)
         uses: actions/upload-artifact@v4
         with:
-          name: booster-dose-admin-${{ env.RELEASE_TAG }}-build
+          name: lifecare-admin-${{ env.RELEASE_TAG }}-build
           path: release-assets/
           retention-days: 30
 
@@ -169,27 +169,31 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag_name != '') }}
         with:
           tag_name: ${{ env.RELEASE_TAG }}
-          name: "BoosterDose Admin ${{ env.RELEASE_TAG }}"
+          name: "Life Care Medicine Admin ${{ env.RELEASE_TAG }}"
           draft: false
           prerelease: ${{ github.event.inputs.prerelease == 'true' }}
           files: release-assets/*
           body: |
-            ## 🚀 BoosterDose Admin App (${{ env.RELEASE_TAG }})
+            ## 🚀 Life Care Medicine Admin App (${{ env.RELEASE_TAG }})
 
             ### 📦 Download Packages
-            - **Universal APK** (All Android devices): `BoosterDose-Admin-${{ env.RELEASE_TAG }}-universal.apk`
-            - **ARM64 APK** (Modern Android devices): `BoosterDose-Admin-${{ env.RELEASE_TAG }}-arm64-v8a.apk`
-            - **ARMv7 APK** (Older 32-bit Android devices): `BoosterDose-Admin-${{ env.RELEASE_TAG }}-armeabi-v7a.apk`
-            - **Google Play AppBundle**: `BoosterDose-Admin-${{ env.RELEASE_TAG }}.aab`
+            - **Universal APK** (All Android devices including Android 6.0+): `LifeCare-Admin-${{ env.RELEASE_TAG }}-universal.apk`
+            - **ARM64 APK** (Modern 64-bit Android devices): `LifeCare-Admin-${{ env.RELEASE_TAG }}-arm64-v8a.apk`
+            - **ARMv7 APK** (Older 32-bit Android devices / Android 6.0 Marshmallow): `LifeCare-Admin-${{ env.RELEASE_TAG }}-armeabi-v7a.apk`
+            - **Google Play AppBundle**: `LifeCare-Admin-${{ env.RELEASE_TAG }}.aab`
+
+            ### 💡 Note for Android 6.0 / 6.0.1 Devices
+            Please download either the **Universal APK** or the **ARMv7 APK** (`armeabi-v7a`).
 
             ### 🔐 File Integrity Checksums
             See attached `SHA256SUMS.txt` to verify file integrity.
 
             ### ✨ Key Features
             - Admin Dashboard & Live Order Management
+            - Medicine & Health Product Catalog Manager
+            - Multi-Image Product Gallery & Upload System
             - Abandoned Cart Lead Capture & Recovery
-            - Section & Hero Banner Manager
-            - Push Notifications & Battery Optimization Background Sync
-            - Camera & Gallery Book Cover Uploads
+            - Push Notifications & Background Sync
+            - Full Android 6.0 (API 23) to Android 15 (API 35) MultiDex & Desugaring Support
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

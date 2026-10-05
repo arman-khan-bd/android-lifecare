@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,7 +46,7 @@ class PermissionService {
 
     // On modern Android (13+ / API 33+), photos permission is used
     PermissionStatus status;
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       status = await Permission.photos.status;
       if (!status.isGranted) {
         status = await Permission.photos.request();
@@ -133,7 +132,7 @@ class PermissionService {
 
   /// Check if Battery Optimization is disabled
   static Future<bool> isBatteryOptimizationDisabled() async {
-    if (kIsWeb || !Platform.isAndroid) return true;
+    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return true;
     return await Permission.ignoreBatteryOptimizations.isGranted;
   }
 
@@ -142,7 +141,7 @@ class PermissionService {
     BuildContext context, {
     bool showPrompt = true,
   }) async {
-    if (kIsWeb || !Platform.isAndroid) return true;
+    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return true;
 
     final isIgnored = await Permission.ignoreBatteryOptimizations.isGranted;
     if (isIgnored) return true;

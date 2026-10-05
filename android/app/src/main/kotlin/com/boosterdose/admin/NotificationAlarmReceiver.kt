@@ -106,7 +106,8 @@ class NotificationAlarmReceiver : BroadcastReceiver() {
         if (token.isBlank()) return
 
         val customBaseUrl = prefs.getString("flutter.custom_base_url", null)
-        val baseUrl = (customBaseUrl ?: "https://boosterdose.shop").trimEnd('/')
+        val rawBase = (if (!customBaseUrl.isNullOrBlank() && !customBaseUrl.contains("boosterdose")) customBaseUrl else "http://lifecaremedicinebd.shop").trim().trimEnd('/')
+        val baseUrl = if (rawBase.endsWith("/home")) rawBase.removeSuffix("/home").trimEnd('/') else rawBase
 
         val urlString = "$baseUrl/api/admin/notifications/feed"
         val url = URL(urlString)
