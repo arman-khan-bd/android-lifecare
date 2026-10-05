@@ -79,30 +79,47 @@ class SectionModel {
     );
   }
 
+  static String? _cleanImg(dynamic val) {
+    if (val == null) return null;
+    final str = val.toString().trim();
+    if (str.isEmpty || str == 'null' || str == 'undefined') return null;
+    if (str.contains('convertflow') || str.contains('themes/convertflow')) return null;
+    return str;
+  }
+
   /// Get the best display image URL for this section (custom image, content image, or default)
   String? get displayImage {
-    if (imageUrl != null && imageUrl!.trim().isNotEmpty) return imageUrl;
-    if (previewImage != null && previewImage!.trim().isNotEmpty) return previewImage;
-    if (content['image_url'] != null && content['image_url'].toString().trim().isNotEmpty) {
-      return content['image_url'].toString();
+    if (sectionKey == 'author') {
+      final aImg = _cleanImg(content['author_image']);
+      if (aImg != null) return aImg;
+      final pImg = _cleanImg(previewImage);
+      if (pImg != null) return pImg;
+      final iImg = _cleanImg(imageUrl);
+      if (iImg != null) return iImg;
+      final cImg = _cleanImg(content['image_url']);
+      if (cImg != null) return cImg;
+      return _cleanImg(defaultImage) ?? '/images/lifecare/brand_profile.jpg';
     }
+
+    if (sectionKey == 'navbar') {
+      final logo = _cleanImg(content['logo_url']) ?? _cleanImg(previewImage) ?? _cleanImg(imageUrl);
+      if (logo != null) return logo;
+    }
+
     if (sectionKey == 'hero' && heroSlides.isNotEmpty) {
-      final banner = heroSlides.first['banner_image'] ?? heroSlides.first['mobile_image_url'];
-      if (banner != null && banner.toString().trim().isNotEmpty) {
-        return banner.toString();
-      }
+      final banner = _cleanImg(heroSlides.first['banner_image']) ?? _cleanImg(heroSlides.first['mobile_image_url']);
+      if (banner != null) return banner;
     }
-    if (sectionKey == 'navbar' && content['logo_url'] != null) {
-      return content['logo_url'].toString();
+
+    final custom = _cleanImg(imageUrl) ?? _cleanImg(previewImage) ?? _cleanImg(content['image_url']);
+    if (custom != null) return custom;
+
+    if (sectionKey == 'footer') {
+      final fImg = _cleanImg(content['payment_banner_url']);
+      if (fImg != null) return fImg;
     }
-    if (sectionKey == 'author' && content['author_image'] != null) {
-      return content['author_image'].toString();
-    }
-    if (sectionKey == 'footer' && content['payment_banner_url'] != null) {
-      return content['payment_banner_url'].toString();
-    }
-    if (defaultImage != null && defaultImage!.trim().isNotEmpty) return defaultImage;
-    return null;
+
+    return _cleanImg(defaultImage);
   }
 
   /// Navbar getters

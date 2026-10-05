@@ -42,7 +42,8 @@ class AppNetworkImage extends StatelessWidget {
   static String? normalizeUrl(String? rawUrl, {String? baseUrl}) {
     if (rawUrl == null) return null;
     var url = rawUrl.trim();
-    if (url.isEmpty) return null;
+    if (url.isEmpty || url == 'null' || url == 'undefined') return null;
+    if (url.contains('convertflow') || url.contains('themes/convertflow')) return null;
 
     // 1. Google Drive Sharing Link to direct stream
     // e.g. https://drive.google.com/file/d/1a2b3c4d5e/view?usp=sharing

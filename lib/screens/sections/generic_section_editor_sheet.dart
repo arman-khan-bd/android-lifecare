@@ -43,11 +43,24 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
     super.initState();
     _isActive = widget.section.isActive;
     _nameController = TextEditingController(text: widget.section.name);
-    _imageUrlController = TextEditingController(text: widget.section.imageUrl ?? widget.section.content['image_url']?.toString() ?? '');
     _editableContent = Map<String, dynamic>.from(widget.section.content);
 
-    // Pre-seed default website content if missing so all fields are immediately visible and editable
     final k = widget.section.sectionKey;
+    String initialImage = widget.section.imageUrl ?? '';
+    if (k == 'author') {
+      initialImage = widget.section.content['author_image']?.toString() 
+          ?? widget.section.imageUrl 
+          ?? widget.section.content['image_url']?.toString() 
+          ?? '';
+    } else if (initialImage.isEmpty) {
+      initialImage = widget.section.content['image_url']?.toString() ?? '';
+    }
+    if (initialImage.contains('convertflow')) {
+      initialImage = '';
+    }
+    _imageUrlController = TextEditingController(text: initialImage);
+
+    // Pre-seed default website content if missing so all fields are immediately visible and editable
     if (k == 'footer') {
       _editableContent.putIfAbsent('brand_title', () => 'Life Care');
       _editableContent.putIfAbsent('brand_subtitle', () => 'Medicine BD');
@@ -72,6 +85,15 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
       _editableContent.putIfAbsent('quote_title', () => 'প্রাকৃতিক উপাদান ও সর্বোচ্চ বিশুদ্ধতা নিশ্চয়তা');
       _editableContent.putIfAbsent('quote_text', () => 'দীর্ঘমেয়াদী সুস্থতায় ক্ষতিকারক কেমিক্যালমুক্ত নিরাপদ ও কার্যকরী ভেষজ স্বাস্থ্য সমাধান।');
       _editableContent.putIfAbsent('cta_text', () => 'মেডিসিন তালিকা দেখুন');
+    } else if (k == 'author') {
+      _editableContent.putIfAbsent('section_badge', () => '🌿 আমাদের সম্পর্কে • Life Care Medicine BD');
+      _editableContent.putIfAbsent('author_name', () => 'Life Care Medicine BD');
+      _editableContent.putIfAbsent('author_title', () => 'প্রাকৃতিক ও হারবাল হেলথকেয়ার সল্যুশন');
+      _editableContent.putIfAbsent('author_tagline', () => 'Care, Trust & Natural Wellness');
+      _editableContent.putIfAbsent('author_institute', () => 'লাইফ কেয়ার হেলথ ল্যাবস বাংলাদেশ');
+      _editableContent.putIfAbsent('author_quote', () => '"আমরা বিশ্বাস করি, প্রকৃতির ভেষজ উপাদানের মাঝেই লুকিয়ে আছে সুস্থ ও সতেজ জীবনের শ্রেষ্ঠ সহায়ক যত্ন।"');
+      _editableContent.putIfAbsent('bio_p1', () => _editableContent['author_bio'] ?? 'Life Care Medicine BD দীর্ঘ বছর ধরে বাংলাদেশে খাঁটি, নিরাপদ এবং গুণগত মানসম্পন্ন প্রাকৃতিক ভেষজ খাদ্য সম্পূরক সরবরাহ করে আসছে। আমাদের প্রতিটি পণ্য কঠোর মাননিয়ন্ত্রণের মাধ্যমে প্রস্তুত করা হয়, যাতে গ্রাহকরা পান সর্বোচ্চ বিশুদ্ধতা।');
+      _editableContent.putIfAbsent('bio_p2', () => 'আমাদের টিম প্রাচীন আয়ুর্বেদিক জ্ঞানের সাথে আধুনিক বিজ্ঞানসম্মত পদ্ধতির সমন্বয়ে জয়েন্ট, হাড়, মাংসপেশি ও মেটাবলিক স্বাস্থ্য সুরক্ষায় বিশ্বস্ত পণ্য পৌঁছে দিচ্ছে সারা বাংলাদেশের প্রতিটি প্রান্তে।');
     } else if (k == 'dispatch' || k == 'parcel') {
       _editableContent.putIfAbsent('section_title', () => 'সারা দেশে দ্রুততম হোম ডেলিভারি');
       _editableContent.putIfAbsent('section_subtitle', () => 'অর্ডার করার ৪৮ থেকে ৭২ ঘণ্টার মধ্যে আপনার হাতে পণ্য পৌঁছে যাবে ইনশাআল্লাহ।');
@@ -109,17 +131,24 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
       });
 
       final sp = Provider.of<SectionProvider>(context, listen: false);
+      final target = widget.section.sectionKey == 'navbar' 
+          ? 'logo_url' 
+          : (widget.section.sectionKey == 'author' ? 'author_image' : 'image_url');
+
       final uploadedUrl = await sp.uploadSectionImage(
         widget.section.id,
         bytes,
         file.name,
-        targetField: widget.section.sectionKey == 'navbar' ? 'logo_url' : 'image_url',
+        targetField: target,
       );
 
       if (uploadedUrl != null && mounted) {
         setState(() {
           _imageUrlController.text = uploadedUrl;
           _editableContent['image_url'] = uploadedUrl;
+          if (widget.section.sectionKey == 'author') {
+            _editableContent['author_image'] = uploadedUrl;
+          }
           _pendingImageBytes = null;
           _isUploadingImage = false;
         });
@@ -147,8 +176,17 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
     final sp = Provider.of<SectionProvider>(context, listen: false);
 
     final updatedContent = Map<String, dynamic>.from(_editableContent);
-    if (_imageUrlController.text.trim().isNotEmpty) {
-      updatedContent['image_url'] = _imageUrlController.text.trim();
+    final img = _imageUrlController.text.trim();
+    if (img.isNotEmpty) {
+      updatedContent['image_url'] = img;
+      if (widget.section.sectionKey == 'author') {
+        updatedContent['author_image'] = img;
+      }
+    }
+    if (widget.section.sectionKey == 'author') {
+      if (updatedContent['bio_p1'] != null && updatedContent['author_bio'] == null) {
+        updatedContent['author_bio'] = updatedContent['bio_p1'];
+      }
     }
 
     // Bidirectional sync for website template aliases
@@ -244,7 +282,7 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
   List<_EditableField> get _fieldsForSection {
     final c = _editableContent;
     final List<_EditableField> fields = [];
-    final handledKeys = <String>{'image_url', 'slides', 'features', 'highlights'};
+    final handledKeys = <String>{'image_url', 'author_image', 'slides', 'features', 'highlights'};
 
     switch (widget.section.sectionKey) {
       case 'footer':
@@ -293,12 +331,16 @@ class _GenericSectionEditorSheetState extends State<GenericSectionEditorSheet> {
 
       case 'author':
         fields.addAll([
-          _EditableField('author_name', 'গবেষক / কনসালটেন্টের নাম', Icons.person_outline_rounded, c['author_name']?.toString() ?? ''),
-          _EditableField('author_title', 'পদবি / বিশেষজ্ঞ টাইটেল', Icons.badge_outlined, c['author_title']?.toString() ?? ''),
-          _EditableField('author_bio', 'বায়ো / ব্র্যান্ড পরিচিতি বিবরণ', Icons.info_outline_rounded, c['author_bio']?.toString() ?? '', maxLines: 4),
-          _EditableField('author_quote', 'বিশেষ অঙ্গীকার বা উক্তি', Icons.format_quote_rounded, c['author_quote']?.toString() ?? '', maxLines: 2),
+          _EditableField('section_badge', 'সেকশন ব্যাজ', Icons.stars_rounded, c['section_badge']?.toString() ?? '🌿 আমাদের সম্পর্কে • Life Care Medicine BD'),
+          _EditableField('author_name', 'ব্র্যান্ড / অথর নাম', Icons.person_outline_rounded, c['author_name']?.toString() ?? 'Life Care Medicine BD'),
+          _EditableField('author_title', 'পদবি / সাব-টাইটেল', Icons.badge_outlined, c['author_title']?.toString() ?? 'প্রাকৃতিক ও হারবাল হেলথকেয়ার সল্যুশন'),
+          _EditableField('author_tagline', 'ট্যাগলাইন', Icons.label_outline_rounded, c['author_tagline']?.toString() ?? 'Care, Trust & Natural Wellness'),
+          _EditableField('author_institute', 'প্রতিষ্ঠান / ল্যাব', Icons.business_outlined, c['author_institute']?.toString() ?? 'লাইফ কেয়ার হেলথ ল্যাবস বাংলাদেশ'),
+          _EditableField('author_quote', 'বিশেষ উক্তি / অঙ্গীকার', Icons.format_quote_rounded, c['author_quote']?.toString() ?? '', maxLines: 2),
+          _EditableField('bio_p1', 'পরিচিতি অনুচ্ছেদ ১', Icons.info_outline_rounded, c['bio_p1']?.toString() ?? c['author_bio']?.toString() ?? '', maxLines: 4),
+          _EditableField('bio_p2', 'পরিচিতি অনুচ্ছেদ ২', Icons.notes_rounded, c['bio_p2']?.toString() ?? '', maxLines: 4),
         ]);
-        handledKeys.addAll(['author_name', 'author_title', 'author_bio', 'author_quote']);
+        handledKeys.addAll(['author_name', 'author_title', 'author_bio', 'author_quote', 'author_tagline', 'author_institute', 'bio_p1', 'bio_p2', 'section_badge', 'social_links', 'highlights', 'author_image']);
         break;
 
       case 'reviews':
