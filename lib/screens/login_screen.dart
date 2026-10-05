@@ -14,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: 'admin@lifecaremedicinebd.shop');
-  final _passwordController = TextEditingController(text: 'admin123');
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _domainController = TextEditingController(text: ApiConfig.baseUrl);
   
   bool _obscurePassword = true;
@@ -167,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.emailAddress,
                     style: const TextStyle(color: Colors.white, fontSize: 15),
                     decoration: const InputDecoration(
-                      hintText: 'admin@lifecaremedicinebd.shop',
+                      hintText: 'আপনার ইমেইল লিখুন',
                       prefixIcon: Icon(Icons.email_outlined, color: Color(0xFF94A3B8)),
                     ),
                     validator: (val) {
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: _obscurePassword,
                     style: const TextStyle(color: Colors.white, fontSize: 15),
                     decoration: InputDecoration(
-                      hintText: '••••••••',
+                      hintText: 'পাসওয়ার্ড লিখুন',
                       prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF94A3B8)),
                       suffixIcon: IconButton(
                         icon: Icon(
